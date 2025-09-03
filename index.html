@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Coding Challenge - Login</title>
+
+  <!-- Google Fonts for Neon Style -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0d0f1a; /* dark navy background */
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    /* Neon background glow */
+    .liquid-bg {
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: radial-gradient(circle at 40% 40%, rgba(0, 245, 255, 0.2), transparent 70%),
+                  radial-gradient(circle at 70% 60%, rgba(0, 245, 255, 0.1), transparent 70%);
+      filter: blur(80px);
+      animation: moveLiquid 10s infinite alternate ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes moveLiquid {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-50px, 50px) scale(1.2); }
+      100% { transform: translate(50px, -50px) scale(1); }
+    }
+
+    /* Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      background: rgba(15, 18, 35, 0.85);
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      width: 340px;
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      box-shadow: 0 0 25px rgba(0, 245, 255, 0.2);
+    }
+
+    /* Neon text style */
+    h1 {
+      font-size: 26px;
+      margin-bottom: 5px;
+      color: #00f5ff;
+      font-family: 'Montserrat', sans-serif;
+      text-shadow: 0 0 5px #00f5ff, 0 0 10px #00f5ff, 0 0 20px #00f5ff;
+      animation: flicker 2.5s infinite alternate;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #00f5ff;
+      font-family: 'Dancing Script', cursive;
+      text-shadow: 0 0 5px #00f5ff, 0 0 12px #00f5ff;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+      }
+      20%, 24%, 55% {
+        opacity: 0.7;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #bbb;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      background: #0f1325;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #00f5ff;
+      box-shadow: 0 0 12px #00f5ff;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      background: #00f5ff;
+      color: #0d0f1a;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
+      text-shadow: 0 0 6px rgba(255,255,255,0.6);
+      box-shadow: 0 0 12px #00f5ff, 0 0 24px #00f5ff;
+    }
+
+    button:hover {
+      background: #00dbe0;
+      box-shadow: 0 0 20px #00f5ff, 0 0 30px #00f5ff;
+    }
+
+    .error-message {
+      margin-top: 10px;
+      color: #ff4d4d;
+      font-size: 14px;
+      text-shadow: 0 0 8px #ff4d4d;
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <!-- Neon cyan glow background -->
+  <div class="liquid-bg"></div>
+
+  <div class="container">
+    <div class="login-form">
+      <h1>Daily Coding Challenge</h1>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+          <label for="role">Role:</label>
+          <select id="role" name="role" required>
+            <option value="">Select Role</option>
+            <option value="student">Student</option>
+            <option value="faculty">Faculty</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <div id="error-message" class="error-message"></div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="setup-demo.js"></script>
+</body>
+</html>
