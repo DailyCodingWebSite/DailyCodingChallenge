@@ -1,166 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daily Coding Challenge - Login</title>
 
-  <!-- Google Fonts for Neon Style -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet"/>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --accent:#00f5ff;
+      --footer-h:56px; /* keep this in sync with footer padding/line-height */
     }
 
-    body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #0d0f1a; /* dark navy background */
-      font-family: 'Montserrat', sans-serif;
-      overflow: hidden;
-      color: #fff;
+    *{ margin:0; padding:0; box-sizing:border-box; }
+
+    body{
+      min-height:100dvh;
+      display:flex;
+      flex-direction:column;              /* stack header -> main -> footer */
+      align-items:center;
+      background:#0d0f1a;
+      font-family:'Montserrat', sans-serif;
+      
+      color:#fff;
+      overflow-x:hidden;
+      padding-bottom:var(--footer-h);     /* so fixed footer doesn't cover content */
     }
 
     /* Neon background glow */
-    .liquid-bg {
-      position: absolute;
-      width: 150%;
-      height: 150%;
-      background: radial-gradient(circle at 40% 40%, rgba(0, 245, 255, 0.2), transparent 70%),
-                  radial-gradient(circle at 70% 60%, rgba(0, 245, 255, 0.1), transparent 70%);
-      filter: blur(80px);
-      animation: moveLiquid 10s infinite alternate ease-in-out;
-      z-index: -1;
+    .liquid-bg{
+      position:fixed;                     /* stays put while scrolling */
+      inset:-25% -25% -25% -25%;
+      background:
+        radial-gradient(circle at 40% 40%, rgba(0,245,255,.20), transparent 70%),
+        radial-gradient(circle at 70% 60%, rgba(0,245,255,.10), transparent 70%);
+      filter:blur(80px);
+      animation:moveLiquid 10s infinite alternate ease-in-out;
+      z-index:-1;
+    }
+    @keyframes moveLiquid{
+      0%{ transform:translate(0,0) scale(1); }
+      50%{ transform:translate(-50px,50px) scale(1.2); }
+      100%{ transform:translate(50px,-50px) scale(1); }
     }
 
-    @keyframes moveLiquid {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-50px, 50px) scale(1.2); }
-      100% { transform: translate(50px, -50px) scale(1); }
+    /* Header */
+    header{
+      width:100%;
+      padding:14px 20px;
+      background:rgba(15,18,35,.85);
+      border-bottom:1px solid rgba(0,245,255,.2);
+      box-shadow:0 0 20px rgba(0,245,255,.2);
+      display:flex;
+      justify-content:center;             /* center the inner group */
+    }
+    .header-center{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+    }
+    header img{
+      height:46px;
+      width:auto;
+      object-fit:contain;
+    }
+    header h1{
+      font-size:22px;
+      color:#0d0f1a;
+      text-shadow:0 0 5px var(--accent), 0 0 15px var(--accent);
+      line-height:1.1;
+      /* no flicker on header */
+      animation:none;
+      margin:0;
     }
 
-    /* Container */
-    .container {
-      position: relative;
-      z-index: 1;
-      background: rgba(15, 18, 35, 0.85);
-      padding: 40px;
-      border-radius: 12px;
-      text-align: center;
-      width: 340px;
-      border: 1px solid rgba(0, 245, 255, 0.2);
-      box-shadow: 0 0 25px rgba(0, 245, 255, 0.2);
+    /* Main container */
+    .container{
+      flex:1;                              /* take remaining height */
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px 16px;                   /* breathing room around card */
     }
 
-    /* Neon text style */
-    h1 {
-      font-size: 26px;
-      margin-bottom: 5px;
-      color: #00f5ff;
-      font-family: 'Montserrat', sans-serif;
-      text-shadow: 0 0 5px #00f5ff, 0 0 10px #00f5ff, 0 0 20px #00f5ff;
-      animation: flicker 2.5s infinite alternate;
+    .login-form{
+      background:rgba(15,18,35,.85);
+      padding:40px 36px;
+      border-radius:12px;
+      width:min(92vw, 360px);
+      border:1px solid rgba(0,245,255,.2);
+      box-shadow:0 0 25px rgba(0,245,255,.2);
+      text-align:center;
+      
     }
 
-    h2 {
-      font-size: 20px;
-      margin-bottom: 20px;
-      color: #00f5ff;
-      font-family: 'Dancing Script', cursive;
-      text-shadow: 0 0 5px #00f5ff, 0 0 12px #00f5ff;
+    /* Scope neon headings to the card only */
+    .login-form h1{
+      font-size:26px;
+      margin-bottom:6px;
+      color:#0d0f1a;
+      text-shadow:0 0 5px var(--accent), 0 0 20px var(--accent);
+      animation:flicker 2.5s infinite alternate;
+    }
+    .login-form h2{
+      font-size:20px;
+      margin-bottom:20px;
+      color:#0d0f1a;
+      font-family:'Dancing Script', cursive;
+      text-shadow:0 0 5px var(--accent), 0 0 12px var(--accent);
+    }
+    @keyframes flicker{
+      0%,19%,21%,23%,25%,54%,56%,100%{ opacity:1; }
+      20%,24%,55%{ opacity:.7; }
     }
 
-    @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.7;
-      }
+    .form-group{ margin-bottom:18px; text-align:left; }
+    label{ display:block; margin-bottom:6px; font-size:14px; color:#bbb; }
+
+    input, select{
+      width:100%;
+      padding:10px;
+      border-radius:6px;
+      border:1px solid rgba(0,245,255,.3);
+      background:#0f1325;
+      color:#fff;
+      font-size:14px;
+      outline:none;
+      transition:.3s;
+    }
+    input:focus, select:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 12px var(--accent);
     }
 
-    .form-group {
-      margin-bottom: 18px;
-      text-align: left;
+    button{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:8px;
+      background:var(--accent);
+      color:#0d0f1a;
+      font-size:16px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.3s ease;
+      text-shadow:0 0 6px rgba(255,255,255,.6);
+      box-shadow:0 0 12px var(--accent), 0 0 24px var(--accent);
+    }
+    button:hover{
+      background:#00dbe0;
+      box-shadow:0 0 20px var(--accent), 0 0 30px var(--accent);
     }
 
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 14px;
-      color: #bbb;
-      font-family: 'Montserrat', sans-serif;
+    .error-message{
+      margin-top:10px;
+      color:#ff4d4d;
+      font-size:14px;
+      text-shadow:0 0 8px #ff4d4d;
     }
 
-    input, select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid rgba(0, 245, 255, 0.3);
-      background: #0f1325;
-      color: #fff;
-      font-size: 14px;
-      outline: none;
-      transition: 0.3s;
+    /* Footer (fixed and centered) */
+    footer{
+      position:fixed;
+      left:0; right:0; bottom:0;
+      height:var(--footer-h);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 12px;
+      text-align:center;
+      background:rgba(15,18,35,.85);
+      border-top:1px solid rgba(0,245,255,.2);
+      box-shadow:0 0 20px rgba(0,245,255,.2);
+      font-size:14px;
+      color:#bbb;
+    }
+    footer span{
+      color:var(--accent);
+      text-shadow:0 0 8px var(--accent);
     }
 
-    input:focus, select:focus {
-      border-color: #00f5ff;
-      box-shadow: 0 0 12px #00f5ff;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      background: #00f5ff;
-      color: #0d0f1a;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: 'Montserrat', sans-serif;
-      text-shadow: 0 0 6px rgba(255,255,255,0.6);
-      box-shadow: 0 0 12px #00f5ff, 0 0 24px #00f5ff;
-    }
-
-    button:hover {
-      background: #00dbe0;
-      box-shadow: 0 0 20px #00f5ff, 0 0 30px #00f5ff;
-    }
-
-    .error-message {
-      margin-top: 10px;
-      color: #ff4d4d;
-      font-size: 14px;
-      text-shadow: 0 0 8px #ff4d4d;
-      font-family: 'Montserrat', sans-serif;
+    /* Small screens */
+    @media (max-width:480px){
+      header h1{ font-size:18px; }
+      header img{ height:40px; }
+      .login-form{ padding:28px 22px; }
+      .login-form h1{ font-size:22px; }
+      .login-form h2{ font-size:18px; }
     }
   </style>
 </head>
 <body>
-  <!-- Neon cyan glow background -->
   <div class="liquid-bg"></div>
 
-  <div class="container">
+  <!-- Header -->
+  <header role="banner">
+    <div class="header-center">
+      <img src="christ-logo.png" alt="Christ University Logo" />
+      <h1>Christ University, Kengeri Campus</h1>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
     <div class="login-form">
       <h1>Daily Coding Challenge</h1>
       <h2>Login</h2>
+
       <form id="loginForm">
         <div class="form-group">
           <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required>
+          <input type="text" id="username" name="username" required />
         </div>
+
         <div class="form-group">
           <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
+          <input type="password" id="password" name="password" required />
         </div>
+
         <div class="form-group">
           <label for="role">Role:</label>
           <select id="role" name="role" required>
@@ -170,11 +231,15 @@
             <option value="admin">Admin</option>
           </select>
         </div>
+
         <button type="submit">Login</button>
       </form>
+
       <div id="error-message" class="error-message"></div>
     </div>
-  </div>
+  </main>
+
+  
 
   <script src="auth.js"></script>
   <script src="setup-demo.js"></script>
