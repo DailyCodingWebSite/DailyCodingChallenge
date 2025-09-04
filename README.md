@@ -189,13 +189,6 @@ Replace the localStorage implementation in `database.js` with actual database co
 - [ ] API documentation
 - [ ] Unit tests and integration tests
 
-## Support
 
-For issues or questions, please check the troubleshooting section or contact the development team.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-=======
 # DCD
 >>>>>>> a5f45c2ce2ec79e5d289ca4d0eb0944c6d889f57

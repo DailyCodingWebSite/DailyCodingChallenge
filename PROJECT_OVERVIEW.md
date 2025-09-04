@@ -1,17 +1,17 @@
 # Daily Coding Challenge Website - Project Overview
 
-## 🎯 Project Summary
+##  Project Summary
 
 A complete web application for conducting daily coding challenges with three distinct user roles: **Students**, **Faculty**, and **Admin**. The system allows students to take daily quizzes, faculty to monitor performance, and administrators to manage questions and schedules.
 
-## ✅ Features Implemented
+##  Features Implemented
 
-### 🔐 Authentication System
+###  Authentication System
 - **Multi-role login**: Students, Faculty, and Admin
 - **Session management**: Secure login sessions with role-based redirects
 - **Default accounts**: Pre-configured test accounts for immediate use
 
-### 👨‍🎓 Student Dashboard
+###  Student Dashboard
 - **Daily quiz access**: One technical quiz per day with 2 questions
 - **Multiple choice format**: 4 options per question, 1 correct answer
 - **Real-time timer**: Shows remaining time for quiz completion
@@ -19,7 +19,7 @@ A complete web application for conducting daily coding challenges with three dis
 - **Single attempt**: Prevents multiple attempts on the same day
 - **Time-based availability**: Quizzes only available during scheduled hours
 
-### 👨‍🏫 Faculty Dashboard
+###  Faculty Dashboard
 - **Performance monitoring**: Comprehensive student performance tracking
 - **Class filtering**: Filter by specific classes (CSE-A, CSE-B, IT-A, IT-B)
 - **Time period filtering**: Current week, last week, or all-time data
@@ -27,14 +27,14 @@ A complete web application for conducting daily coding challenges with three dis
 - **Detailed table**: Student name, class, date, status, score, and time taken
 - **Visual indicators**: Color-coded status (Completed/Missed)
 
-### 🔧 Admin Panel
+###  Admin Panel
 - **Question management**: Add, view, and delete quiz questions
 - **Quiz scheduling**: Set up daily quizzes with specific time slots
 - **User management**: Add new students, faculty, and admin users
 - **Time control**: Configure start and end times for quizzes
 - **Tabbed interface**: Organized sections for different admin tasks
 
-## 🏗️ Technical Architecture
+##  Technical Architecture
 
 ### Frontend
 - **HTML5**: Semantic markup for all pages
@@ -50,27 +50,27 @@ A complete web application for conducting daily coding challenges with three dis
 
 ### File Structure
 ```
-📁 Project Root
-├── 🌐 Frontend Files
+ Project Root
+├──  Frontend Files
 │   ├── index.html          # Login page
 │   ├── student.html        # Student dashboard
 │   ├── faculty.html        # Faculty dashboard
 │   ├── admin.html          # Admin panel
 │   └── styles.css          # Main stylesheet
-├── 📜 JavaScript Files
+├──  JavaScript Files
 │   ├── auth.js            # Authentication logic
 │   ├── student.js         # Student functionality
 │   ├── faculty.js         # Faculty functionality
 │   ├── admin.js           # Admin functionality
 │   └── database.js        # Data management
-├── 🖥️ Backend Files
+├──  Backend Files
 │   ├── server.js          # Express server
 │   └── package.json       # Dependencies
-├── 🚀 Setup Files
+├──  Setup Files
 │   ├── start.bat          # Windows launcher
 │   ├── start.sh           # Linux/Mac launcher
 │   └── setup-demo.js      # Demo data setup
-└── 📚 Documentation
+└──  Documentation
     ├── README.md          # Setup instructions
     └── PROJECT_OVERVIEW.md # This file
 ```
@@ -105,7 +105,7 @@ A complete web application for conducting daily coding challenges with three dis
    - Analyze performance by class or time period
    - Track individual student progress
 
-## 🎨 Design Features
+##  Design Features
 
 ### User Interface
 - **Modern design**: Clean, professional appearance
@@ -120,14 +120,14 @@ A complete web application for conducting daily coding challenges with three dis
 - **Error handling**: User-friendly error messages
 - **Loading states**: Visual feedback during operations
 
-## 🔒 Security Features
+##  Security Features
 
 - **Role-based access control**: Different interfaces for each user type
 - **Session management**: Secure login sessions
 - **Input validation**: Form validation and sanitization
 - **Authentication checks**: Protected routes and functions
 
-## 📊 Data Management
+##  Data Management
 
 ### Database Schema
 - **Users**: ID, username, password, role, full name, class
@@ -140,7 +140,7 @@ A complete web application for conducting daily coding challenges with three dis
 - **8 coding questions**: Various difficulty levels
 - **Pre-scheduled quiz**: Available for immediate testing
 
-## 🚀 Deployment Ready
+##  Deployment Ready
 
 ### Production Considerations
 - **Database**: Replace localStorage with MySQL/PostgreSQL
@@ -153,18 +153,18 @@ A complete web application for conducting daily coding challenges with three dis
 - **Dependencies**: Express.js for server functionality
 - **Cross-platform**: Works on Windows, Linux, and macOS
 
-## 🎯 Key Achievements
+##  Key Achievements
 
-✅ **Complete authentication system** with role-based access  
-✅ **Functional quiz system** with timing and scoring  
-✅ **Comprehensive admin panel** for content management  
-✅ **Detailed faculty dashboard** for performance monitoring  
-✅ **Responsive design** that works on all devices  
-✅ **Professional UI/UX** with modern styling  
-✅ **Easy setup process** with automated scripts  
-✅ **Comprehensive documentation** for users and developers  
+ **Complete authentication system** with role-based access  
+ **Functional quiz system** with timing and scoring  
+ **Comprehensive admin panel** for content management  
+ **Detailed faculty dashboard** for performance monitoring  
+ **Responsive design** that works on all devices  
+ **Professional UI/UX** with modern styling  
+ **Easy setup process** with automated scripts  
+ **Comprehensive documentation** for users and developers  
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 
 - **Email notifications** for quiz reminders
 - **Advanced analytics** with charts and graphs

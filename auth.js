@@ -1,9 +1,6 @@
 // Authentication and login functionality
 
-// Load database
-const script = document.createElement('script');
-script.src = 'database.js';
-document.head.appendChild(script);
+
 
 // Wait for database to load
 setTimeout(() => {
